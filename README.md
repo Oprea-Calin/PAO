@@ -7,6 +7,8 @@
 ## Obiecte:
 * User
    - Customer
+* Article
+* MainService
 * Main
 ## Actiuni:
 
