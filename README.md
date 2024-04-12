@@ -9,6 +9,7 @@
    - Customer
    - Admin
 * Article
+* Comanda
 * MainService
 * Main
 ## Actiuni:
@@ -17,10 +18,10 @@
 * Creare admin
 * Afisare date client
 * Editare date client
-* Creare produs
-* Stergere produs
-* Adaugare produs la comanda
+* Creare articol
+* Stergere articol
 * Creare comanda
+* Adaugare produs la comanda
 * Afisare comanda
 * Afisarea tuturor comenzilor unui client
 
