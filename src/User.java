@@ -1,6 +1,6 @@
 public class User {
 
-    private final int userId;
+    private int userId;
 
     private String firstName, lastName;
 
@@ -11,6 +11,8 @@ public class User {
         this.lastName=lastName;
         this.userId=userId;
     }
+
+
     public String getFirstName() {
         return firstName;
     }
@@ -30,4 +32,5 @@ public class User {
     public int getUserId() {
         return userId;
     }
+    public void setUserId(int id){this.userId=id;}
 }

@@ -1,3 +1,6 @@
+import java.text.ParseException;
+import java.util.Scanner;
+
 public class Customer extends User {
 
     private String email;
@@ -12,6 +15,21 @@ public class Customer extends User {
         this.address=address;
     }
 
+    public Customer(int userId, Scanner in) throws ParseException{
+        super(userId,"as","as");
+        this.setUserId(userId);
+        this.read(in);
+    }
+    public void read(Scanner in) throws ParseException {
+        System.out.println("First name: ");
+        this.setFirstName(in.nextLine());
+        System.out.println("Last name: ");
+        this.setLastName(in.nextLine());
+        System.out.println("Email:");
+        this.setEmail(in.nextLine());
+        System.out.println("Address:");
+        this.setAdress(in.nextLine());
+    }
 
     public String getEmail() {
         return email;

@@ -4,28 +4,38 @@ import java.util.List;
 import java.util.*;
 
 public class Main {
+
+
+    static List<String> commands = Arrays.asList("1.Creare cont client","2. Afisare clienti","x. Iesire");
+
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        var x= false;
+
+        for(int i =0;i<commands.size();i++)
+        {
+            System.out.println(commands.get(i));
+        }
+
+        MainService mainService = new MainService();
 
 
-        User user =new User(1,"Calin", "Oprea");
-        Customer cust = new Customer(2,"Calin", "Oprea", "email@gmaom","str Piinilor");
-        List allUsers = new ArrayList();
-        allUsers.add(user);
-        allUsers.add(cust);
+        while (!x){
+            String command = in.nextLine().toLowerCase(Locale.ROOT);
 
 
-        Set<Article> articole = new HashSet<Article>();
+            try{
+                switch (command) {
+                    case "1" -> mainService.createCustomer(in);
+                    case "2" -> mainService.showCustomers();
+                    case "x" -> x = true;
+                }
 
-        Article art1 = new Article(1,"Papuci Sport", "Papuci de alergare buni de sport", 249);
-        Article art2 = new Article(2,"Pantofi Eleganti", "Papuci frumosi de mers la nunta", 450);
-        Article art3 = new Article(3,"Slapi", "Incaltaminte de mers la mare", 30);
+            }catch (Exception e){
+                System.out.println(e.toString());
+            }
+        }
 
-        articole.add(art1);
-        articole.add(art2);
-        articole.add(art3);
-
-
-        System.out.printf("Hello and welcome!");
 
 
     }
