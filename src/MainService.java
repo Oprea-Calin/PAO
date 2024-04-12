@@ -5,31 +5,13 @@ public class MainService {
 
     private static int id=0;
     private static int idArt=0;
-    List allUsers = new ArrayList();
-    Set<Article> articole = new HashSet<Article>();
+    private static int idComanda=0;
+    private List<Comanda> comenzi = new ArrayList();
+    private List<User> allUsers = new ArrayList();
+    private List<Article> articole = new ArrayList<>();
 
     public MainService(){
 
-
-//        User user =new User(1,"Calin", "Oprea");
-//        Customer cust = new Customer(2,"Calin", "Oprea", "email@gmaom","str Piinilor");
-//        List allUsers = new ArrayList();
-//        allUsers.add(user);
-//        allUsers.add(cust);
-//
-//
-//        Set<Article> articole = new HashSet<Article>();
-//
-//        Article art1 = new Article(1,"Papuci Sport", "Papuci de alergare buni de sport", 249);
-//        Article art2 = new Article(2,"Pantofi Eleganti", "Papuci frumosi de mers la nunta", 450);
-//        Article art3 = new Article(3,"Slapi", "Incaltaminte de mers la mare", 30);
-//
-//        articole.add(art1);
-//        articole.add(art2);
-//        articole.add(art3);
-//
-//
-//        System.out.printf("Hello and welcome!");
 
     }
     public void createCustomer(Scanner in) throws ParseException {
@@ -40,7 +22,7 @@ public class MainService {
     }
 
     public void createArticle(Scanner in) throws ParseException{
-        Article art1 = new Article(id++,in);
+        Article art1 = new Article(idArt++,in);
         articole.add(art1);
         System.out.println("Articol adaugat!");
     }
@@ -51,9 +33,11 @@ public class MainService {
         System.out.println(articole);
     }
 
-    public void showCustomers()
-    {if(allUsers.size()==0)
-        System.out.println("Nu sunt clienti!");
+    public void showAllUsers()
+    {
+        if(allUsers.size()==0)
+            System.out.println("Nu sunt useri!");
+
         for(int i = 0; i<allUsers.size();i++)
         {
 
@@ -61,4 +45,39 @@ public class MainService {
         }
 
     }
+
+    public int createComanda(int idUser)
+    {
+        Comanda comanda = new Comanda(idUser, idComanda++);
+        comenzi.add(comanda);
+        System.out.println("Comanda "+ (idComanda-1) + "s-a creat cu succes!");
+        return idComanda-1;
+    }
+    public void addArticleToComanda(int idComanda, Scanner in)
+    {
+        System.out.println("ID-ul articolului de introdus in cos:");
+        int idArticle = Integer.valueOf(in.nextLine());
+        for(int i =0;i<comenzi.size();i++)
+        {
+            if(comenzi.get(i).getIdComanda() == idComanda)
+            {
+                for(int j =0;j<articole.size();j++)
+                {
+                    if (articole.get(j).getArticleId() == idArticle)
+                    {
+                        comenzi.get(i).addArticleToComanda(articole.get(j));
+                        System.out.println("Articolul a fost adaugat cu succes!");
+                    }
+
+                }
+            }
+        }
+    }
+
+    public void createAdmin(Scanner in) throws ParseException{
+        Admin admin1 = new Admin(id++,in);
+        allUsers.add(admin1);
+        System.out.println("Admin created");
+    }
+
 }

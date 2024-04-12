@@ -23,9 +23,9 @@ public class Article {
         System.out.println("Nume articol:");
         this.setArticleName(in.nextLine());
         System.out.println("Descriere articol:");
-        this.setArticleName(in.nextLine());
+        this.setDescription(in.nextLine());
         System.out.println("Pret articol:");
-        this.setArticleName(in.nextLine());
+        this.setArticlePrice(Integer.valueOf(in.nextLine()));
 
     }
     public String getName() {
