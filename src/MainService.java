@@ -4,8 +4,9 @@ import java.util.*;
 public class MainService {
 
     private static int id=0;
+    private static int idArt=0;
     List allUsers = new ArrayList();
-
+    Set<Article> articole = new HashSet<Article>();
 
     public MainService(){
 
@@ -37,6 +38,19 @@ public class MainService {
         allUsers.add(cust1);
         System.out.println("Customer created");
     }
+
+    public void createArticle(Scanner in) throws ParseException{
+        Article art1 = new Article(id++,in);
+        articole.add(art1);
+        System.out.println("Articol adaugat!");
+    }
+    public void showArticles()
+    {
+        if(articole.size()==0)
+            System.out.println("Nu exista articole!");
+        System.out.println(articole);
+    }
+
     public void showCustomers()
     {if(allUsers.size()==0)
         System.out.println("Nu sunt clienti!");

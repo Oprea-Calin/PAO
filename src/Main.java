@@ -6,7 +6,7 @@ import java.util.*;
 public class Main {
 
 
-    static List<String> commands = Arrays.asList("1.Creare cont client","2. Afisare clienti","x. Iesire");
+    static List<String> commands = Arrays.asList("1.Creare cont client","2. Afisare clienti","3. Creare articol","4. Afisare articole","x. Iesire");
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -28,6 +28,8 @@ public class Main {
                 switch (command) {
                     case "1" -> mainService.createCustomer(in);
                     case "2" -> mainService.showCustomers();
+                    case "3" -> mainService.createArticle(in);
+                    case "4" -> mainService.showArticles();
                     case "x" -> x = true;
                 }
 

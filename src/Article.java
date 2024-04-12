@@ -1,3 +1,6 @@
+import java.text.ParseException;
+import java.util.Scanner;
+
 public class Article {
     private final int articleId;
     private int price;
@@ -12,6 +15,19 @@ public class Article {
         this.name=name;
     }
 
+    public Article(int articleId, Scanner in) throws ParseException{
+        this.articleId=articleId;
+        this.read(in);
+    }
+    public void read(Scanner in) throws ParseException{
+        System.out.println("Nume articol:");
+        this.setArticleName(in.nextLine());
+        System.out.println("Descriere articol:");
+        this.setArticleName(in.nextLine());
+        System.out.println("Pret articol:");
+        this.setArticleName(in.nextLine());
+
+    }
     public String getName() {
         return name;
     }
@@ -31,4 +47,20 @@ public class Article {
     public int getArticleId() {
         return articleId;
     }
+
+    public void setArticleName(String name)
+    {
+        this.name=name;
+    }
+    public void setArticleDescription(String description)
+    {
+        this.description=description;
+    }
+    public void setArticlePrice(int price)
+    {
+        this.price=price;
+    }
+
+
+
 }
