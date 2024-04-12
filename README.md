@@ -6,7 +6,7 @@
 
 ## Obiecte:
 * User
-* - Customer
+   - Customer
 ## Actiuni:
 
 * Creare client
