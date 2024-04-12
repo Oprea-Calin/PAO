@@ -1,5 +1,12 @@
 # Online Shop
+## Termen de predare:
+* etapa 1: 14 aprilie
+* etapa 2: 28 mai
+## Prezentare: 29 mai
 
+## Obiecte:
+* User
+* - Customer
 ## Actiuni:
 
 * Creare client
