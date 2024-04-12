@@ -7,6 +7,7 @@
 ## Obiecte:
 * User
    - Customer
+* Main
 ## Actiuni:
 
 * Creare client
