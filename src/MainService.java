@@ -1,3 +1,9 @@
+import model.User.Admin;
+import model.User.User;
+import model.Article;
+import model.Comanda;
+import model.Customer;
+
 import java.text.ParseException;
 import java.util.*;
 
@@ -18,7 +24,7 @@ public class MainService {
 
         Customer cust1 = new Customer(id++, in);
         allUsers.add(cust1);
-        System.out.println("Customer created");
+        System.out.println("model.Customer created");
     }
 
     public void createArticle(Scanner in) throws ParseException{
@@ -50,7 +56,7 @@ public class MainService {
     {
         Comanda comanda = new Comanda(idUser, idComanda++);
         comenzi.add(comanda);
-        System.out.println("Comanda "+ (idComanda-1) + "s-a creat cu succes!");
+        System.out.println("model.Comanda "+ (idComanda-1) + "s-a creat cu succes!");
         return idComanda-1;
     }
     public void addArticleToComanda(int idComanda, Scanner in)
@@ -77,7 +83,7 @@ public class MainService {
     public void createAdmin(Scanner in) throws ParseException{
         Admin admin1 = new Admin(id++,in);
         allUsers.add(admin1);
-        System.out.println("Admin created");
+        System.out.println("model.User.Admin created");
     }
 
 }

@@ -1,3 +1,8 @@
+import view.ConsoleApp;
+
+import javax.sound.midi.InvalidMidiDataException;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -6,10 +11,12 @@ import java.util.*;
 public class Main {
 
 
-    static List<String> commands = Arrays.asList("1.Creare cont client","2. Afisare clienti","3. Creare articol","4. Afisare articole","5. Creare Admin","6. Creare comanda", "7. Adauga articol la comanda","x. Iesire");
+    static List<String> commands = Arrays.asList("1.Creare cont client","2. Afisare clienti","3. Creare articol","4. Afisare articole","5. Creare model.User.Admin","6. Creare comanda", "7. Adauga articol la comanda","x. Iesire");
 
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
+        ConsoleApp consoleApp = ConsoleApp.getInstance();
+        consoleApp.startMenu();
+        /*Scanner in = new Scanner(System.in);
         var x= false;
 
         for(int i =0;i<commands.size();i++)
@@ -26,6 +33,7 @@ public class Main {
 
             try{
                 switch (command) {
+
                     case "1" -> mainService.createCustomer(in);
                     case "2" -> mainService.showAllUsers();
                     case "3" -> mainService.createArticle(in);
@@ -41,7 +49,7 @@ public class Main {
             }
         }
 
-
+*/
 
     }
 }

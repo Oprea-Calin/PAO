@@ -5,10 +5,10 @@
 ## Prezentare: 29 mai
 
 ## Obiecte:
-* User
-   - Customer
-   - Admin
-* Article
+* model.User.model.User
+   - model.Customer
+   - model.User.Admin
+* model.Article
 * MainService
 * Main
 ## Actiuni:
