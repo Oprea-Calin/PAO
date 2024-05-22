@@ -33,9 +33,9 @@ public class ConsoleApp {
         Scanner scanner = new Scanner(System.in);
         int option;
 
-        System.out.println("Welcome to my awesome Music App\n" +
-                "1.LogIn\n" +
-                "2.SignUp\n" +
+        System.out.println("StartMenu\n" +
+                "1.Login\n" +
+                "2.Signup\n" +
                 "3.Exit\n");
         option = scanner.nextInt();
         scanner.nextLine();

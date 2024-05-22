@@ -6,18 +6,18 @@ import java.util.Scanner;
 public class Admin extends User{
 
     private String email;
-
     private int codAcces;
 
-    public Admin(int userId,String firstName, String lastName ,String email, int codAcces)
+
+    public Admin(int userId,String firstName, String lastName, String adresa, String password ,String email, int codAcces)
     {
-        super(userId, firstName, lastName);
+        super(userId, firstName, lastName, adresa, password);
         this.email=email;
         this.codAcces=codAcces;
     }
 
     public Admin(int userId, Scanner in) throws ParseException{
-        super(userId,"","");
+        super(userId,"","","","");
         this.setUserId(userId);
         this.read(in);
     }
@@ -25,7 +25,7 @@ public class Admin extends User{
     public static User createAdmin(){
         Scanner sc = new Scanner(System.in);
 
-        String first_name, last_name, id, email;
+        String first_name, last_name, id, email, adresa, password;
         int codAcces;
 
         System.out.println("ID: ");
@@ -34,17 +34,21 @@ public class Admin extends User{
         first_name = sc.nextLine();
         System.out.println("Last name: ");
         last_name = sc.nextLine();
+        System.out.println("Adresa");
+        adresa = sc.nextLine();
+        System.out.println("Password");
+        password = sc.nextLine();
         System.out.println("Email");
         email = sc.nextLine();
         System.out.println("Cod Acces");
         codAcces =Integer.parseInt(sc.nextLine());
 
-        return new Admin(Integer.parseInt(id),first_name, last_name, email, codAcces);
+        return new Admin(Integer.parseInt(id),first_name, last_name,adresa, password, email, codAcces);
     }
 
     public void read(Scanner in) throws ParseException{
         System.out.println("First Name:");
-        this.setFirstName(in.nextLine());
+        this.setUsername(in.nextLine());
         System.out.println("Last Name:");
         this.setLastName(in.nextLine());
         System.out.println("Email:");

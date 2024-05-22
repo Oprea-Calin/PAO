@@ -8,31 +8,29 @@ import java.util.Scanner;
 public class Customer extends User {
 
     private String email;
-    private String address;
 
 
 
-    public Customer(int userId,String firstName, String lastName ,String email, String address)
+    public Customer(int userId,String firstName, String lastName ,String email, String adresa, String password)
     {
-        super(userId,firstName,lastName);
+        super(userId,firstName,lastName, adresa, password);
         this.email=email;
-        this.address=address;
+
     }
 
     public Customer(int userId, Scanner in) throws ParseException{
-        super(userId,"as","as");
+        super(userId,"as","as","","");
         this.setUserId(userId);
         this.read(in);
     }
     public void read(Scanner in) throws ParseException {
         System.out.println("First name: ");
-        this.setFirstName(in.nextLine());
+        this.setUsername(in.nextLine());
         System.out.println("Last name: ");
         this.setLastName(in.nextLine());
         System.out.println("Email:");
         this.setEmail(in.nextLine());
-        System.out.println("Address:");
-        this.setAdress(in.nextLine());
+
     }
 
     public String getEmail() {
@@ -42,12 +40,7 @@ public class Customer extends User {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getAdress() {
-        return address;
-    }
-    public void setAdress(String address) {
-        this.address = address;
-    }
+
 
 
 

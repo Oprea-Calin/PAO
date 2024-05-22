@@ -1,7 +1,6 @@
 package view;
 
 import model.User.Admin;
-import model.User.User;
 import persistence.UserRepository;
 
 import java.util.Scanner;
@@ -38,7 +37,7 @@ public class adminApp extends Console {
         Scanner scanner = new Scanner(System.in);
         int option;
 
-        System.out.println("\n\n\nWelcome  " + admin.getFirstName() + "!!!");
+        System.out.println("\n\n\nWelcome  " + admin.getUsername() + "!!!");
         System.out.println("Choose your next action:\n" +
                 "1.See your info\n" +
                 "4.End");

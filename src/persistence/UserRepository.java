@@ -7,9 +7,7 @@ import oracle.jdbc.OraclePreparedStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Vector;
 
 
@@ -40,17 +38,6 @@ public class UserRepository implements GenericRepository<User> {
     }
 
 
-    public void seeder()
-    {
-        User user1 = new User(1,"Mihai", "Peste");
-        User user2 = new User(2,"Victor", "Abu");
-        User user3 = new Admin(3,"Gicu", "Lates","gicu@gmail.com",123);
-
-        users.add(user1);
-        users.add(user2);
-        users.add(user3);
-    }
-
     public void erase()
     {
         users.clear();
@@ -58,24 +45,28 @@ public class UserRepository implements GenericRepository<User> {
 
     @Override
     public void add(User user) {
-        String insertUser = "INSERT INTO User VALUES (?, ?, ?, ?, ?)";
+        String insertUser = "INSERT INTO User VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement preparedStatement = (PreparedStatement)dbconn.getContext().prepareStatement(insertUser);
             if ( user.getClass() == Admin.class )
             {
                 preparedStatement.setInt(1,id);
-                preparedStatement.setString(2,user.getFirstName());
+                preparedStatement.setString(2,user.getUsername());
                 preparedStatement.setString(3,  user.getLastName());
                 preparedStatement.setString(4, ((Admin) user).getEmail());
                 preparedStatement.setInt(5, ((Admin) user).getCod());
+                preparedStatement.setString(6,user.getAdresa());
+                preparedStatement.setString(7,user.getPassword());
             }
             else{
                 preparedStatement.setInt(1,id);
-                preparedStatement.setString(2,user.getFirstName());
+                preparedStatement.setString(2,user.getUsername());
                 preparedStatement.setString(3,  user.getLastName());
-                preparedStatement.setString(4, "notadmin");
-                preparedStatement.setInt(5, 0);
+                preparedStatement.setString(4,"notAdmin");
+                preparedStatement.setInt(5,0);
+                preparedStatement.setString(6, user.getAdresa());
+                preparedStatement.setString(7, user.getPassword());
             }
 
 
@@ -93,7 +84,7 @@ public class UserRepository implements GenericRepository<User> {
     public User get(int id) throws SQLException {
         String selectQuery = """
                                 
-                SELECT us.userid, us.firstname,us.lastname             
+                SELECT us.userid, us.username,us.lastname, us.email, us.password             
                     FROM app_user us, artist a WHERE a.userid = us.userid
                     AND a.adminid = ?
                 """;
@@ -108,7 +99,9 @@ public class UserRepository implements GenericRepository<User> {
                 User user = new User(
                         res.getInt(1),
                         res.getString(2),
-                        res.getString(3)
+                        res.getString(3),
+                        res.getString(4),
+                        res.getString(5)
                 );
                 return user;
             } else {
@@ -122,7 +115,7 @@ public class UserRepository implements GenericRepository<User> {
     @Override
     public ArrayList<User> getAll() {
         String selectQuery = """
-                    SELECT us.userid, us.firstname,us.lastname
+                    SELECT us.userid, us.username,us.lastname, us.email, us.password     
                     FROM user us
                 """;
         try {
@@ -136,7 +129,9 @@ public class UserRepository implements GenericRepository<User> {
                 User user = new User(
                         res.getInt(1),
                         res.getString(2),
-                        res.getString(3)
+                        res.getString(3),
+                        res.getString(4),
+                        res.getString(5)
 
                 );
                 users.add(user);
@@ -162,7 +157,7 @@ public class UserRepository implements GenericRepository<User> {
             OraclePreparedStatement preparedStatement = (OraclePreparedStatement)
                     dbconn.getContext().prepareStatement(updateStatementArt);
 
-            preparedStatement.setString(1, obj.getFirstName());
+            preparedStatement.setString(1, obj.getUsername());
             preparedStatement.setString(2, obj.getLastName());
 
             preparedStatement.executeUpdate();
@@ -183,7 +178,7 @@ public class UserRepository implements GenericRepository<User> {
             OraclePreparedStatement preparedStatement = (OraclePreparedStatement)
                     dbconn.getContext().prepareStatement(updateStatementUser);
 
-            preparedStatement.setString(1, obj.getFirstName());
+            preparedStatement.setString(1, obj.getUsername());
             preparedStatement.setString(2, obj.getLastName());
 
 
@@ -231,7 +226,7 @@ public class UserRepository implements GenericRepository<User> {
     public User getByUsername(String username){
         String selectQuery = """
                                 
-                SELECT userid, firstname,lastname
+                SELECT userid, username,lastname, email, password 
                                 
                     FROM us.username = ?
                 """;
@@ -246,7 +241,9 @@ public class UserRepository implements GenericRepository<User> {
                 User user = new User(
                         res.getInt(1),
                         res.getString(2),
-                        res.getString(3)
+                        res.getString(3),
+                        res.getString(4),
+                        res.getString(5)
                 );
                 return user;
             } else {

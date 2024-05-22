@@ -1,30 +1,31 @@
 package model.User;
 
-import java.util.Date;
 import java.util.Scanner;
 
 public class User {
 
     private int userId;
 
-    private String firstName, lastName;
+    private String username, lastName, adresa, password;
 
 
     public User(){}
-    public User(int userId,String firstName, String lastName)
+    public User(int userId,String firstName, String lastName, String adresa, String password)
     {
-        this.firstName=firstName;
+        this.username =firstName;
         this.lastName=lastName;
         this.userId=userId;
+        this.adresa = adresa;
+        this.password = password;
     }
 
 
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getLastName() {
@@ -40,6 +41,11 @@ public class User {
     }
     public void setUserId(int id){this.userId=id;}
 
+    public String getAdresa(){return adresa;}
+    public void setAdresa(String adresa){this.adresa=adresa;}
+    public String getPassword(){return adresa;}
+    public void setPassword(String password){this.password=password;}
+
 
     public void read() {
         Scanner sc = new Scanner(System.in);
@@ -48,7 +54,7 @@ public class User {
         setUserId(sc.nextInt());
 
         System.out.print("Enter firstname: ");
-        setFirstName(sc.nextLine());
+        setUsername(sc.nextLine());
 
         sc.nextLine();
 
@@ -60,16 +66,20 @@ public class User {
     public static User createUser(){
         Scanner sc = new Scanner(System.in);
 
-        String first_name, last_name, id;
+        String first_name, last_name, id, fullname, password, adresa;
 
         System.out.println("ID: ");
         id = sc.nextLine();
-        System.out.println("First name: ");
+        System.out.println("Username");
         first_name = sc.nextLine();
-        System.out.println("Last name: ");
-        last_name = sc.nextLine();
+        System.out.println("Full name: ");
+        fullname = sc.nextLine();
+        System.out.println("Adresa ");
+        adresa = sc.nextLine();
+        System.out.println("Password ");
+        password = sc.nextLine();
 
-        return new User( Integer.parseInt(id),first_name, last_name);
+        return new User( Integer.parseInt(id),first_name, fullname, adresa, password );
     }
 
 

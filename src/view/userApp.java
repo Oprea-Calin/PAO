@@ -36,7 +36,7 @@ public class userApp extends Console {
         Scanner scanner = new Scanner(System.in);
         int option;
 
-        System.out.println("\n\n\nWelcome  " + User.createUser().getFirstName() + "!!!");
+        System.out.println("\n\n\nWelcome  " + User.createUser().getUsername() + "!!!");
         System.out.println("Choose your next action:\n" +
                 "1.Show a few random songs\n" +
                 "2.Search for a song\n" +
