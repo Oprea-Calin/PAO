@@ -20,6 +20,11 @@ public class User {
     }
 
 
+    public Admin toAdmin(User user)
+    {
+        Admin admin = new Admin(user.userId, user.username,user.lastName, user.adresa, user.password, "", 0);
+        return admin;
+    }
     public String getUsername() {
         return username;
     }

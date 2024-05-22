@@ -12,7 +12,11 @@ public class Audit {
     private FileWriter writer;
     private String path = "audit.csv";
     public Audit() {
-
+        try{
+            writer = new FileWriter(path);
+        }catch(IOException e){
+            throw new RuntimeException(e);
+        }
     }
     public static Audit getInstance(){
         if(instance == null){

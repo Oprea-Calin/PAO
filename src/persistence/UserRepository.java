@@ -7,7 +7,9 @@ import oracle.jdbc.OraclePreparedStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Vector;
 
 
@@ -41,6 +43,35 @@ public class UserRepository implements GenericRepository<User> {
     public void erase()
     {
         users.clear();
+    }
+
+    public int validateLogin(String username, String password) {
+        /* returns the Map.Entry containing user_id and admin_id or null if none */
+
+        String selectQuery = """
+                SELECT userid
+                FROM User 
+                WHERE username = ? AND password = ?
+             """;
+
+        try {
+            PreparedStatement preparedStatement = (PreparedStatement)
+                    dbconn.getContext().prepareStatement(selectQuery);
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+
+            ResultSet res = preparedStatement.executeQuery();
+
+            if (res.next()) {
+                int userId = res.getInt(1);
+               return userId;
+            } else {
+                return -1; // No matching user found
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
@@ -84,12 +115,11 @@ public class UserRepository implements GenericRepository<User> {
     public User get(int id) throws SQLException {
         String selectQuery = """
                                 
-                SELECT us.userid, us.username,us.lastname, us.email, us.password             
-                    FROM app_user us, artist a WHERE a.userid = us.userid
-                    AND a.adminid = ?
+                SELECT userid, username,lastname, email, password             
+                    FROM User where userid = ?
                 """;
         try {
-            OraclePreparedStatement preparedStatement = (OraclePreparedStatement)
+            PreparedStatement preparedStatement = (PreparedStatement)
                     dbconn.getContext().prepareStatement(selectQuery);
             preparedStatement.setInt(1, id);
 
@@ -115,11 +145,11 @@ public class UserRepository implements GenericRepository<User> {
     @Override
     public ArrayList<User> getAll() {
         String selectQuery = """
-                    SELECT us.userid, us.username,us.lastname, us.email, us.password     
-                    FROM user us
+                    SELECT userid, username,lastname, email, password     
+                    FROM User 
                 """;
         try {
-            OraclePreparedStatement preparedStatement = (OraclePreparedStatement)
+            PreparedStatement preparedStatement = (PreparedStatement)
                     dbconn.getContext().prepareStatement(selectQuery);
             ResultSet res = preparedStatement.executeQuery();
 

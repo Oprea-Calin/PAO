@@ -3,6 +3,7 @@ package view;
 import model.User.User;
 import persistence.UserRepository;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class userApp extends Console {
@@ -29,6 +30,14 @@ public class userApp extends Console {
             instance = new userApp();
         }
         return instance;
+    }
+
+    public void setUserId(int id) throws SQLException {
+        user.setUserId(id);
+        user = userRepository.get(id);
+    }
+    public int validateLogin(String username, String password){
+        return userRepository.validateLogin(username, password);
     }
 
     @Override

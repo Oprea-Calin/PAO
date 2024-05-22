@@ -8,6 +8,7 @@ import persistence.UserRepository;
 
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -29,7 +30,7 @@ public class ConsoleApp {
         return instance;
     }
 
-    public void startMenu(){
+    public void startMenu() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         int option;
 
@@ -50,15 +51,14 @@ public class ConsoleApp {
         }
     }
 
-    private void signup(){
+    private void signup() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         int option;
 
         System.out.println("Choose a type of account\n" +
                 "1.Admin account\n" +
                 "2.User account\n" +
-                "3.Show users\n" +
-                "4.Exit\n" +
+                "3.Exit\n" +
                 "5.End\n");
 
         option = scanner.nextInt();
@@ -67,8 +67,10 @@ public class ConsoleApp {
             case 1 -> {
                 adminApp1.createAdmin();
                 System.out.println("Account created successfully\n");
-               // login();
+                login();
+                adminApp1.showUsers();
                 startMenu();
+
             }
             case 2 -> {
                 userApp1.createUser();
@@ -76,8 +78,7 @@ public class ConsoleApp {
 //                login();
                 startMenu();
             }
-            case 3 -> userApp1.createUser();
-            case 4 -> startMenu();
+            case 3 -> startMenu();
             default -> {
                 System.out.println("Invalid option");
                 signup();
@@ -85,31 +86,26 @@ public class ConsoleApp {
         }
     }
 
-    private void login(){
+    private void login() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         String username, password;
 
         System.out.println("Login:");
-        System.out.println("FirstName");
+        System.out.println("Username");
         username = scanner.nextLine().trim();
         System.out.println("Password:");
         password = scanner.nextLine().trim();
 
-//        Map.Entry<Integer,Integer> ids = null;
-//
-//        ids = artistApp.validateLogin(username, password);
-//        if(ids != null) {
-//            artistApp.setArtist_id(ids.getValue());
-//            artistApp.startMenu();
-//            return;
-//        }
-//
-//        ids = listenerApp.validateLogin(username, password);
-//        if(ids != null) {
-//            listenerApp.setListener_id(ids.getValue());
-//            listenerApp.startMenu();
-//            return;
-//        }
+        int id;
+
+        id = adminApp1.validateLogin(username, password);
+        if(id != -1) {
+            adminApp1.setAdminID(id);
+            adminApp1.startMenu();
+            return;
+        }
+
+
 
         System.out.println("Invalid username or password\n");
         startMenu();
