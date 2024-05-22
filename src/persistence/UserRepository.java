@@ -46,7 +46,6 @@ public class UserRepository implements GenericRepository<User> {
     }
 
     public int validateLogin(String username, String password) {
-        /* returns the Map.Entry containing user_id and admin_id or null if none */
 
         String selectQuery = """
                 SELECT userid

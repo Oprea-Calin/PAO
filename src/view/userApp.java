@@ -33,8 +33,9 @@ public class userApp extends Console {
     }
 
     public void setUserId(int id) throws SQLException {
-        user.setUserId(id);
-        user = userRepository.get(id);
+        userId=id;
+        User user2= userRepository.get(id);
+        user = user2;
     }
     public int validateLogin(String username, String password){
         return userRepository.validateLogin(username, password);
@@ -45,16 +46,8 @@ public class userApp extends Console {
         Scanner scanner = new Scanner(System.in);
         int option;
 
-        System.out.println("\n\n\nWelcome  " + User.createUser().getUsername() + "!!!");
-        System.out.println("Choose your next action:\n" +
-                "1.Show a few random songs\n" +
-                "2.Search for a song\n" +
-                "3.Search an artist\n" +
-                "4.Show a few podcasts\n" +
-                "5.Search a podcast\n" +
-                "6.Listen to your queue\n" +
-                "7.Show my likes\n" +
-                "8.End\n");
+        System.out.println("\n\n\nWelcome  " + user.getUsername() + "!");
+
 
         option = scanner.nextInt();
         scanner.nextLine();

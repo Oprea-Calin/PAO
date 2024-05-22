@@ -55,7 +55,7 @@ public class ConsoleApp {
         Scanner scanner = new Scanner(System.in);
         int option;
 
-        System.out.println("Choose a type of account\n" +
+        System.out.println("Choose type of account\n" +
                 "1.Admin account\n" +
                 "2.User account\n" +
                 "3.Exit\n" +
@@ -75,7 +75,7 @@ public class ConsoleApp {
             case 2 -> {
                 userApp1.createUser();
                 System.out.println("Account created successfully\n");
-//                login();
+                login();
                 startMenu();
             }
             case 3 -> startMenu();
@@ -89,21 +89,54 @@ public class ConsoleApp {
     private void login() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         String username, password;
+        int type;
 
-        System.out.println("Login:");
-        System.out.println("Username");
-        username = scanner.nextLine().trim();
-        System.out.println("Password:");
-        password = scanner.nextLine().trim();
+        System.out.println("Choose a type of account\n" +
+                "1.Admin\n" +
+                "2.User");
+        type = scanner.nextInt();
+
 
         int id;
+        switch(type){
+            case 1->
+        {
+            scanner.nextLine();
+            System.out.println("Username");
+            username = scanner.nextLine();
 
-        id = adminApp1.validateLogin(username, password);
-        if(id != -1) {
-            adminApp1.setAdminID(id);
-            adminApp1.startMenu();
-            return;
+            System.out.println("Password:");
+            password = scanner.nextLine();
+            id = adminApp1.validateLogin(username, password);
+            if(id != -1) {
+                adminApp1.setAdminID(id);
+                adminApp1.startMenu();
+                return;
+            }
         }
+        case  2 ->
+        {
+            scanner.nextLine();
+            System.out.println("Username");
+            username = scanner.nextLine();
+
+            System.out.println("Password:");
+            password = scanner.nextLine();
+            id = userApp1.validateLogin(username, password);
+            if(id != -1) {
+                userApp1.setUserId(id);
+                userApp1.startMenu();
+                return;
+            }
+        }
+        default ->
+        {
+            System.out.println("Invalid option");
+            login();
+        }
+        }
+
+
 
 
 

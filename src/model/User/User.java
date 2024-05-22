@@ -48,7 +48,7 @@ public class User {
 
     public String getAdresa(){return adresa;}
     public void setAdresa(String adresa){this.adresa=adresa;}
-    public String getPassword(){return adresa;}
+    public String getPassword(){return password;}
     public void setPassword(String password){this.password=password;}
 
 
