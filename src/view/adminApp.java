@@ -69,13 +69,13 @@ public class adminApp extends Console {
 
         System.out.println("\n\nWelcome  " + admin.getUsername() + "!");
         System.out.println("Choose your next action:\n" +
-                "1.See your info\n" +
+                "1.Show Users\n" +
                 "4.End");
 
         option = scanner.nextInt();
         scanner.nextLine();
         switch (option) {
-            case 1 -> startMenu();
+            case 1 -> showUsers();
             case 3 -> {
             }
         }

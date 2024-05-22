@@ -58,12 +58,12 @@ public class User {
         System.out.print("Enter id: ");
         setUserId(sc.nextInt());
 
-        System.out.print("Enter firstname: ");
+        System.out.print("Enter username: ");
         setUsername(sc.nextLine());
 
         sc.nextLine();
 
-        System.out.print("Enter lastname: ");
+        System.out.print("Enter fullname: ");
         setLastName(sc.nextLine());
 
     }

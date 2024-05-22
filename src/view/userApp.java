@@ -46,7 +46,7 @@ public class userApp extends Console {
         Scanner scanner = new Scanner(System.in);
         int option;
 
-        System.out.println("\n\n\nWelcome  " + user.getUsername() + "!");
+        System.out.println("\nWelcome  " + user.getUsername() + "!!!");
 
 
         option = scanner.nextInt();

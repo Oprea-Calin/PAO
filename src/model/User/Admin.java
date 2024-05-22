@@ -30,9 +30,9 @@ public class Admin extends User{
 
         System.out.println("ID: ");
         id = sc.nextLine();
-        System.out.println("First name: ");
+        System.out.println("Username: ");
         first_name = sc.nextLine();
-        System.out.println("Last name: ");
+        System.out.println("Fullname: ");
         last_name = sc.nextLine();
         System.out.println("Adresa");
         adresa = sc.nextLine();
@@ -47,9 +47,9 @@ public class Admin extends User{
     }
 
     public void read(Scanner in) throws ParseException{
-        System.out.println("First Name:");
+        System.out.println("Username:");
         this.setUsername(in.nextLine());
-        System.out.println("Last Name:");
+        System.out.println("Fullname:");
         this.setLastName(in.nextLine());
         System.out.println("Email:");
         this.setEmail(in.nextLine());

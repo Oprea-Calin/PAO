@@ -91,7 +91,8 @@ public class ConsoleApp {
         String username, password;
         int type;
 
-        System.out.println("Choose a type of account\n" +
+        System.out.println("Login"
+                +"\nChoose a type of account\n" +
                 "1.Admin\n" +
                 "2.User");
         type = scanner.nextInt();
@@ -135,9 +136,6 @@ public class ConsoleApp {
             login();
         }
         }
-
-
-
 
 
         System.out.println("Invalid username or password\n");
