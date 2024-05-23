@@ -1,5 +1,8 @@
 package model;
 
+import model.User.Admin;
+import model.User.User;
+
 import java.text.ParseException;
 import java.util.Scanner;
 
@@ -27,8 +30,27 @@ public class Article {
         System.out.println("Descriere articol:");
         this.setDescription(in.nextLine());
         System.out.println("Pret articol:");
-        this.setArticlePrice(Integer.valueOf(in.nextLine()));
+        this.setArticlePrice(in.nextInt());
 
+    }
+
+    public static Article createArticle(){
+        Scanner sc = new Scanner(System.in);
+
+        String titlu, descriere;
+        int id, pret;
+
+        System.out.println("ID: ");
+        id = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Titlu articol: ");
+        titlu = sc.nextLine();
+        System.out.println("Descriere articol: ");
+        descriere = sc.nextLine();
+        System.out.println("Pret");
+        pret = sc.nextInt();
+
+        return new Article(id, titlu,descriere,pret);
     }
     public String getName() {
         return name;
@@ -49,6 +71,9 @@ public class Article {
     public int getArticleId() {
         return articleId;
     }
+
+    public int getPrice(){return price;}
+
 
     public void setArticleName(String name)
     {

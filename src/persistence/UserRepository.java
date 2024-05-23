@@ -233,21 +233,6 @@ public class UserRepository implements GenericRepository<User> {
         }catch (SQLException ex){
             throw new RuntimeException(ex);
         }
-
-        String deleteStatementUsr = """
-                DELETE FROM user
-                WHERE userid = ?
-                 """;
-        try{
-            OraclePreparedStatement preparedStatement = (OraclePreparedStatement)
-                    dbconn.getContext().prepareStatement(deleteStatementUsr);
-
-            preparedStatement.setInt(1, obj.getUserId());
-
-            preparedStatement.executeUpdate();
-        }catch (SQLException ex){
-            throw new RuntimeException(ex);
-        }
     }
 
 

@@ -1,7 +1,9 @@
 package view;
 
+import model.Article;
 import model.User.Admin;
 import model.User.User;
+import persistence.ArticleRepository;
 import persistence.UserRepository;
 
 import java.sql.SQLException;
@@ -21,6 +23,7 @@ public class adminApp extends Console {
 
     private adminApp(){
         userRepository = UserRepository.getInstance();
+        articleRepository = ArticleRepository.getInstance();
     }
 
     public void createAdmin() {
@@ -32,6 +35,9 @@ public class adminApp extends Console {
             createAdmin();
         }
     }
+
+
+
 
     public int validateLogin(String username, String password){
         return userRepository.validateLogin(username, password);
@@ -61,6 +67,44 @@ public class adminApp extends Console {
 
         }
     }
+
+    public void showArticles()
+    {
+        ArrayList<Article> articles = articleRepository.getAll();
+        System.out.println("Articles:");
+        for (Article article : articles)
+        {
+            System.out.println(article.getName());
+            System.out.println("\n");
+        }
+    }
+    public void createArticle() {
+        try {
+            articleRepository.add(Article.createArticle());
+        }
+        catch (Exception e) {
+            System.out.println("Something went wrong, please try other values");
+            createArticle();
+        }
+    }
+
+
+    public void deleteArticle()
+    {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Introduceti id-ul articolului de sters:");
+
+        try{
+            articleRepository.delete(articleRepository.get(sc.nextInt()));
+            System.out.println("Articolul a fost sters!");
+
+        }catch (Exception e)
+        {
+            System.out.println("Something went wrong, please try other values");
+            deleteArticle();
+        }
+    }
     @Override
     public void startMenu() {
         audit.write(adminID, "Logged in");
@@ -70,13 +114,19 @@ public class adminApp extends Console {
         System.out.println("\n\nWelcome  " + admin.getUsername() + "!");
         System.out.println("Choose your next action:\n" +
                 "1.Show Users\n" +
+                "2.Show Articles\n"+
+                "3.Create Article\n"+
+                "4.Delete Article\n"+
                 "4.End");
 
         option = scanner.nextInt();
         scanner.nextLine();
         switch (option) {
             case 1 -> showUsers();
-            case 3 -> {
+            case 2 -> showArticles();
+            case 3 -> createArticle();
+            case 4 -> deleteArticle();
+            case 10 -> {
             }
         }
     }
