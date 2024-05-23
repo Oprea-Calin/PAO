@@ -52,33 +52,8 @@ public class MainService {
 
     }
 
-    public int createComanda(int idUser)
-    {
-        Comanda comanda = new Comanda(idUser, idComanda++);
-        comenzi.add(comanda);
-        System.out.println("model.Comanda "+ (idComanda-1) + "s-a creat cu succes!");
-        return idComanda-1;
-    }
-    public void addArticleToComanda(int idComanda, Scanner in)
-    {
-        System.out.println("ID-ul articolului de introdus in cos:");
-        int idArticle = Integer.valueOf(in.nextLine());
-        for(int i =0;i<comenzi.size();i++)
-        {
-            if(comenzi.get(i).getIdComanda() == idComanda)
-            {
-                for(int j =0;j<articole.size();j++)
-                {
-                    if (articole.get(j).getArticleId() == idArticle)
-                    {
-                        comenzi.get(i).addArticleToComanda(articole.get(j));
-                        System.out.println("Articolul a fost adaugat cu succes!");
-                    }
 
-                }
-            }
-        }
-    }
+
 
     public void createAdmin(Scanner in) throws ParseException{
         Admin admin1 = new Admin(id++,in);

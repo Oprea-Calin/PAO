@@ -66,6 +66,7 @@ public class adminApp extends Console {
             System.out.println(user.getUsername());
 
         }
+        startMenu();
     }
 
     public void showArticles()
@@ -77,6 +78,7 @@ public class adminApp extends Console {
             System.out.println(article.getName());
             System.out.println("\n");
         }
+        startMenu();
     }
     public void createArticle() {
         try {
@@ -86,25 +88,11 @@ public class adminApp extends Console {
             System.out.println("Something went wrong, please try other values");
             createArticle();
         }
+        startMenu();
     }
 
 
-    public void deleteArticle()
-    {
-        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Introduceti id-ul articolului de sters:");
-
-        try{
-            articleRepository.delete(articleRepository.get(sc.nextInt()));
-            System.out.println("Articolul a fost sters!");
-
-        }catch (Exception e)
-        {
-            System.out.println("Something went wrong, please try other values");
-            deleteArticle();
-        }
-    }
     @Override
     public void startMenu() {
         audit.write(adminID, "Logged in");
@@ -116,7 +104,6 @@ public class adminApp extends Console {
                 "1.Show Users\n" +
                 "2.Show Articles\n"+
                 "3.Create Article\n"+
-                "4.Delete Article\n"+
                 "4.End");
 
         option = scanner.nextInt();
@@ -125,7 +112,6 @@ public class adminApp extends Console {
             case 1 -> showUsers();
             case 2 -> showArticles();
             case 3 -> createArticle();
-            case 4 -> deleteArticle();
             case 10 -> {
             }
         }
