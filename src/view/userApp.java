@@ -78,6 +78,19 @@ public class userApp extends Console {
 
     }
 
+    public void showComenziUser(int id)
+    {
+        ArrayList<Comanda> comenzi = comandaRepository.getComenziUser(id);
+        System.out.println("Comenzile userului: " + user.getUsername() + ":");
+        for( Comanda comanda : comenzi)
+        {
+            System.out.println("ID comanda:");
+            System.out.println(comanda.getIdComanda());
+            System.out.println("Adresa livrare:");
+            System.out.println(comanda.getAdresaLivrare());
+            System.out.println("\n");
+        }
+    }
     public void createComanda()
     {
         ArrayList<Comanda> comenzi = comandaRepository.getAll();
@@ -119,12 +132,6 @@ public class userApp extends Console {
         }
     }
 
-
-
-
-
-
-
     @Override
     public void startMenu() {
         Scanner scanner = new Scanner(System.in);
@@ -133,13 +140,15 @@ public class userApp extends Console {
         System.out.println("\nWelcome  " + user.getUsername() + "!!!");
 
         System.out.println("Choose your next action:\n" +
-                "1.Create Comanda\n"
+                "1.Create Comanda\n"+
+                "2.Afisare Comenzi User\n"
                 );
 
         option = scanner.nextInt();
         scanner.nextLine();
         switch (option) {
             case 1 -> createComanda();
+            case 2 -> showComenziUser(userId);
 
             case 10 -> {
             }

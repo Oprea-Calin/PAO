@@ -29,6 +29,35 @@ public class ComandaRepository implements GenericRepository<Comanda> {
         return instance;
     }
 
+    public ArrayList<Comanda> getComenziUser(int id) {
+        String selectQuery = """
+                    SELECT  userId, comandaId, adresaLivrare       
+                    FROM Comanda where userId = ?
+                """;
+        try {
+            PreparedStatement preparedStatement = (PreparedStatement)
+                    dbconn.getContext().prepareStatement(selectQuery);
+            preparedStatement.setInt(1, id);
+
+            ResultSet res = preparedStatement.executeQuery();
+
+            ArrayList<Comanda> comenzi = new ArrayList<>();
+
+            while (res.next()) {
+                Comanda comanda = new Comanda(
+                        res.getInt(1),
+                        res.getInt(2),
+                        res.getString(3)
+
+                );
+                comenzi.add(comanda);
+            }
+            return comenzi;
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
     @Override
     public void add(Comanda comanda) {
         String insertUser = "INSERT INTO Comanda VALUES (?, ?, ?)";
@@ -36,9 +65,11 @@ public class ComandaRepository implements GenericRepository<Comanda> {
         try {
             PreparedStatement preparedStatement = (PreparedStatement)dbconn.getContext().prepareStatement(insertUser);
 
-                preparedStatement.setInt(1,comanda.getIdComanda());
+
+            preparedStatement.setInt(1,comanda.getIdComanda());
                 preparedStatement.setInt(2,comanda.getIdUser());
                 preparedStatement.setString(3,comanda.getAdresaLivrare());
+
 
 
             preparedStatement.executeUpdate();
