@@ -5,22 +5,24 @@
 ## Prezentare: 29 mai
 
 ## Obiecte:
-* model.User.model.User
-   - model.Customer
-   - model.User.Admin
-* model.Article
-* MainService
-* Main
+* User
+   - User(Client)
+   - Admin
+* Article
+* Comanda
+* ComandaArticle
+
 ## Actiuni:
 
 * Creare client
 * Creare admin
-* Afisare date client
-* Editare date client
-* Creare produs
-* Stergere produs
-* Adaugare produs la comanda
+* Autentificare client
 * Creare comanda
+* Adaugare produs la comanda
+* Autentificare admin
+* Afisare articole
+* Afisare utilizatori
+* Creare articol
 * Afisare comanda
 * Afisarea tuturor comenzilor unui client
 
