@@ -48,7 +48,7 @@ public class UserRepository implements GenericRepository<User> {
     public int validateLogin(String username, String password) {
 
         String selectQuery = """
-                SELECT userid
+                SELECT userid, email
                 FROM User 
                 WHERE username = ? AND password = ?
              """;
@@ -64,7 +64,11 @@ public class UserRepository implements GenericRepository<User> {
 
             if (res.next()) {
                 int userId = res.getInt(1);
-               return userId;
+                String email = res.getString(2);
+                if(!email.equals("notAdmin"))
+                    return userId;
+                else
+                    return -2;
             } else {
                 return -1; // No matching user found
             }
@@ -72,6 +76,7 @@ public class UserRepository implements GenericRepository<User> {
             throw new RuntimeException(ex);
         }
     }
+
 
     @Override
     public void add(User user) {
@@ -183,7 +188,7 @@ public class UserRepository implements GenericRepository<User> {
                         userid = ?
                 """;
         try {
-            OraclePreparedStatement preparedStatement = (OraclePreparedStatement)
+           PreparedStatement preparedStatement = (PreparedStatement)
                     dbconn.getContext().prepareStatement(updateStatementArt);
 
             preparedStatement.setString(1, obj.getUsername());
@@ -193,28 +198,8 @@ public class UserRepository implements GenericRepository<User> {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
-        String updateStatementUser = """
-                    
-                UPDATE app_user
-                    SET
-                        first_name = ?,
-                        last_name = ?,
-                    WHERE 
-                        userid = ?
-                    """;
-
-        try{
-            OraclePreparedStatement preparedStatement = (OraclePreparedStatement)
-                    dbconn.getContext().prepareStatement(updateStatementUser);
-
-            preparedStatement.setString(1, obj.getUsername());
-            preparedStatement.setString(2, obj.getLastName());
 
 
-            preparedStatement.executeUpdate();
-        }catch (SQLException ex){
-            throw new RuntimeException(ex);
-        }
     }
 
     @Override

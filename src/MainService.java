@@ -2,7 +2,6 @@ import model.User.Admin;
 import model.User.User;
 import model.Article;
 import model.Comanda;
-import model.Customer;
 
 import java.text.ParseException;
 import java.util.*;
@@ -20,12 +19,7 @@ public class MainService {
 
 
     }
-    public void createCustomer(Scanner in) throws ParseException {
 
-        Customer cust1 = new Customer(id++, in);
-        allUsers.add(cust1);
-        System.out.println("model.Customer created");
-    }
 
     public void createArticle(Scanner in) throws ParseException{
         Article art1 = new Article(idArt++,in);

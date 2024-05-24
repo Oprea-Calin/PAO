@@ -1,9 +1,11 @@
 package view;
 
 import model.Article;
+import model.Reducere;
 import model.User.Admin;
 import model.User.User;
 import persistence.ArticleRepository;
+import persistence.ReducereRepository;
 import persistence.UserRepository;
 
 import java.sql.SQLException;
@@ -24,6 +26,7 @@ public class adminApp extends Console {
     private adminApp(){
         userRepository = UserRepository.getInstance();
         articleRepository = ArticleRepository.getInstance();
+        reducereRepository = ReducereRepository.getInstance();
     }
 
     public void createAdmin() {
@@ -35,6 +38,7 @@ public class adminApp extends Console {
             createAdmin();
         }
     }
+
 
 
 
@@ -91,6 +95,33 @@ public class adminApp extends Console {
         startMenu();
     }
 
+    public void createReducere(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Id reducere:");
+        int idRed = sc.nextInt();
+        System.out.println("Id articol:");
+        int idArt = sc.nextInt();
+        System.out.println("Reducere");
+        int reducere = sc.nextInt();
+
+        try{
+            ArrayList<Reducere> reduceri =  reducereRepository.getAll();
+
+            for (Reducere reducere1: reduceri ){
+                if( reducere1.getArticleId() == idArt)
+                {
+                    reducereRepository.delete(reducere1);
+
+                }
+            }
+            reducereRepository.add(new Reducere(idRed,idArt,reducere));
+
+        }catch (Exception e){
+            System.out.println("Something went wrong, please try other values");
+            createReducere();
+        }
+        startMenu();
+    }
 
 
     @Override
@@ -104,7 +135,8 @@ public class adminApp extends Console {
                 "1.Show Users\n" +
                 "2.Show Articles\n"+
                 "3.Create Article\n"+
-                "4.End");
+                "4.Add discount for an article\n"+
+                "5.End");
 
         option = scanner.nextInt();
         scanner.nextLine();
@@ -112,6 +144,7 @@ public class adminApp extends Console {
             case 1 -> showUsers();
             case 2 -> showArticles();
             case 3 -> createArticle();
+            case 4 -> createReducere();
             case 10 -> {
             }
         }

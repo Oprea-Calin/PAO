@@ -109,7 +109,12 @@ public class ConsoleApp {
             System.out.println("Password:");
             password = scanner.nextLine();
             id = adminApp1.validateLogin(username, password);
-            if(id != -1) {
+            if(id==-2)
+            {
+                System.out.println("You don't have admin privileges.\n");
+                startMenu();
+            }
+            if(id != -1 && id !=-2) {
                 adminApp1.setAdminID(id);
                 adminApp1.startMenu();
                 return;

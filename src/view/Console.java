@@ -1,10 +1,7 @@
 package view;
 
 import Service.Audit;
-import persistence.ArticleRepository;
-import persistence.ComandaArticleRepository;
-import persistence.ComandaRepository;
-import persistence.UserRepository;
+import persistence.*;
 
 public abstract class Console {
     protected Audit audit = Audit.getInstance();
@@ -13,6 +10,7 @@ public abstract class Console {
     protected ArticleRepository articleRepository;
     protected ComandaRepository comandaRepository;
     protected ComandaArticleRepository comandaArticleRepository;
+    protected ReducereRepository reducereRepository;
 
     public abstract void startMenu();
 }

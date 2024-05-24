@@ -11,6 +11,7 @@
 * Article
 * Comanda
 * ComandaArticle
+* Reducere
 
 ## Actiuni:
 
@@ -25,4 +26,5 @@
 * Creare articol
 * Afisare comanda
 * Afisarea tuturor comenzilor unui client
+* Adaugare reducere pentru articol
 
