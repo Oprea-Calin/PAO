@@ -90,6 +90,7 @@ public class userApp extends Console {
             System.out.println(comanda.getAdresaLivrare());
             System.out.println("\n");
         }
+        startMenu();
     }
     public void createComanda()
     {

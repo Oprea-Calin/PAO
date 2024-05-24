@@ -68,7 +68,7 @@ public class UserRepository implements GenericRepository<User> {
                 if(!email.equals("notAdmin"))
                     return userId;
                 else
-                    return -2;
+                    return -userId;
             } else {
                 return -1; // No matching user found
             }
