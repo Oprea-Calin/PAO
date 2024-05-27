@@ -2,10 +2,13 @@ package persistence;
 
 import Service.DatabaseConn;
 import model.ComandaArticle;
+import model.Provider;
 import model.providerArticol;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class providerArticleRepository {
 
@@ -36,6 +39,7 @@ public class providerArticleRepository {
         }
 
     }
+
 
 
 }

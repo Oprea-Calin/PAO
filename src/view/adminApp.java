@@ -87,6 +87,65 @@ public class adminApp extends Console {
         }
         startMenu();
     }
+    public void showProviders()
+    {
+        ArrayList<Provider> providers = providerRepository.getAll();
+
+
+        System.out.println("Providers:");
+        for (Provider provider : providers)
+        {
+            System.out.println(provider.getIdProvider());
+            System.out.println(provider.getNume());
+            System.out.println("\n");
+        }
+        startMenu();
+    }
+
+    public void addExistingProviderToExistingArticle()
+    {
+
+        ArrayList<Article> articles = articleRepository.getAll();
+
+        Collections.sort(articles);
+        System.out.println("Articles:");
+        for (Article article : articles)
+        {
+            System.out.println(article.getArticleId());
+            System.out.println(article.getName());
+            System.out.println(article.getDescription());
+            System.out.println(article.getPrice() + " ron");
+
+            System.out.println("\n");
+        }
+
+        ArrayList<Provider> providers = providerRepository.getAll();
+
+
+        System.out.println("Providers:");
+        for (Provider provider : providers)
+        {
+            System.out.println(provider.getIdProvider());
+            System.out.println(provider.getNume());
+            System.out.println("\n");
+        }
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Id Provider:");
+        int idProvider = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Id Article:");
+        int idArticle = sc.nextInt();
+
+        try{
+
+            providerArticleRepository.add(new providerArticol(idProvider, idArticle));
+
+        }catch (Exception e)
+        {
+            System.out.println("Duplicates.Try other values");
+        }
+    }
     public void addProviderToArticle(int idArticle)
     {
 
@@ -190,7 +249,8 @@ public class adminApp extends Console {
                 "2.Show Articles\n"+
                 "3.Create Article\n"+
                 "4.Add discount for an article\n"+
-                "5.End");
+                "5.Add existing provider to existing article"+
+                "6.End");
 
         option = scanner.nextInt();
         scanner.nextLine();
@@ -199,6 +259,7 @@ public class adminApp extends Console {
             case 2 -> showArticles();
             case 3 -> createArticle();
             case 4 -> createReducere();
+            case 5 -> addExistingProviderToExistingArticle();
             case 10 -> {
             }
         }

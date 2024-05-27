@@ -23,6 +23,8 @@ public class Provider {
     public String getNume(){
         return nume;
     }
+
+
     public static Provider createProvider(int id){
         Scanner sc = new Scanner(System.in);
 
