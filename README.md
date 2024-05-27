@@ -7,17 +7,19 @@
 
 Online shop implementeaza un sistem de gestiunea a unui magazin, avand 2 tipuri de utilizatori, admin si user. 
 Se pot crea conturi de admin sau user initial, pentru a se folosi la login. Admin-ul poate vizualiza userii, 
-poate vedea toate articolele sortate in functie de pret, poate adauga articole, reduceri pentru articole.User-ul 
+poate vedea toate articolele sortate in functie de pret, poate adauga articole si provideri pentru fiecare articol, reduceri pentru articole.User-ul 
 poate crea o comanda si poate adauga in comanda articole. De asemenea, poate sa vizualizeze articolele disponibile 
 si toate comenzile sale.
 ## Obiecte:
 * User
    - User(Client)
    - Admin
-* Article
+* Articol
 * Comanda
-* ComandaArticle
+* ComandaArticol
 * Reducere
+* Provider
+* ProviderArticol
 
 ## Actiuni:
 
@@ -30,6 +32,7 @@ si toate comenzile sale.
 * Afisare articole
 * Afisare utilizatori
 * Creare articol
+* Creare provider
 * Afisare comanda
 * Afisarea tuturor comenzilor unui client
 * Adaugare reducere pentru articol
