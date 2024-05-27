@@ -6,7 +6,7 @@ import model.User.User;
 import java.text.ParseException;
 import java.util.Scanner;
 
-public class Article {
+public class Article implements Comparable<Article>{
     private final int articleId;
     private int price;
     private String name, description;
@@ -88,6 +88,20 @@ public class Article {
         this.price=price;
     }
 
+    @Override
+    public int compareTo(Article article) {
 
+        int articlePrice=((Article)article).getPrice();
+        /* For Ascending order*/
+        return this.price-articlePrice;
+
+        /* For Descending order do like this */
+        //return compareage-this.studentage;
+    }
+
+    @Override
+    public String toString() {
+        return "[ Article name =" + name + ", description=" + description + ", price=" + price + "]";
+    }
 
 }

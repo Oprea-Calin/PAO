@@ -9,10 +9,7 @@ import persistence.ReducereRepository;
 import persistence.UserRepository;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.*;
 
 import static view.userApp.user;
 
@@ -77,14 +74,16 @@ public class adminApp extends Console {
     public void showArticles()
     {
         ArrayList<Article> articles = articleRepository.getAll();
+
+        Collections.sort(articles);
         System.out.println("Articles:");
         for (Article article : articles)
         {
             System.out.println(article.getArticleId());
-
             System.out.println(article.getName());
-
             System.out.println(article.getDescription());
+            System.out.println(article.getPrice() + " ron");
+
             System.out.println("\n");
         }
         startMenu();

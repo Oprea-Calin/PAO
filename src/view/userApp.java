@@ -11,6 +11,7 @@ import persistence.UserRepository;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class userApp extends Console {
@@ -147,15 +148,15 @@ public class userApp extends Console {
     public void showArticles()
     {
         ArrayList<Article> articles = articleRepository.getAll();
+        Collections.sort(articles);
 
         System.out.println("Articles:");
         for (Article article : articles)
         {
-            System.out.println(article.getArticleId());
-
+            System.out.println("ID Articol: "+article.getArticleId());
             System.out.println(article.getName());
-
             System.out.println(article.getDescription());
+            System.out.println(article.getPrice() + " ron");
             System.out.println("\n");
         }
         startMenu();
