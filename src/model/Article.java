@@ -92,11 +92,10 @@ public class Article implements Comparable<Article>{
     public int compareTo(Article article) {
 
         int articlePrice=((Article)article).getPrice();
-        /* For Ascending order*/
+
         return this.price-articlePrice;
 
-        /* For Descending order do like this */
-        //return compareage-this.studentage;
+
     }
 
     @Override

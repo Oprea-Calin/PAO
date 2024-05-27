@@ -1,12 +1,9 @@
 package view;
 
-import model.Article;
-import model.Reducere;
+import model.*;
 import model.User.Admin;
 import model.User.User;
-import persistence.ArticleRepository;
-import persistence.ReducereRepository;
-import persistence.UserRepository;
+import persistence.*;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -24,6 +21,8 @@ public class adminApp extends Console {
         userRepository = UserRepository.getInstance();
         articleRepository = ArticleRepository.getInstance();
         reducereRepository = ReducereRepository.getInstance();
+        providerRepository = ProviderRepository.getInstance();
+        providerArticleRepository = persistence.providerArticleRepository.getInstance();
     }
 
     public void createAdmin() {
@@ -31,7 +30,7 @@ public class adminApp extends Console {
             userRepository.add(Admin.createAdmin());
         }
         catch (Exception e) {
-            System.out.println("Something went wrong, please try other values");
+            System.out.println("Something went wrong");
             createAdmin();
         }
     }
@@ -88,14 +87,67 @@ public class adminApp extends Console {
         }
         startMenu();
     }
+    public void addProviderToArticle(int idArticle)
+    {
+
+        ArrayList<Provider> providers = providerRepository.getAll();
+        int idnext=0;
+        if(providers.size()>0)
+        {
+            idnext= providers.get(providers.size()-1).getIdProvider()+1;
+        }
+        providerRepository.add(Provider.createProvider(idnext));
+        int idProvider = idnext;
+
+
+        try{
+
+            providerArticleRepository.add(new providerArticol(idProvider, idArticle));
+
+        }catch (Exception e)
+        {
+            System.out.println("Something went wrong");
+        }
+
+
+    }
     public void createArticle() {
+
+        ArrayList<Article> article = articleRepository.getAll();
+        int idn=0;
+        if(article.size()>0)
+        {
+            idn= article.get(article.size()-1).getArticleId()+1;
+        }
+
+
         try {
+
             articleRepository.add(Article.createArticle());
         }
         catch (Exception e) {
-            System.out.println("Something went wrong, please try other values");
+            System.out.println("Something went wrong");
             createArticle();
         }
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Selectati urmatoarea actiune pentru comanda creata:\n" +
+                "1.Adaugare provider pentru articol\n" +
+                "2.Back\n");
+        int option;
+        option = sc.nextInt();
+        sc.nextLine();
+        switch (option) {
+            case 1 -> {addProviderToArticle(idn); }
+            case 2 -> {
+
+                startMenu();
+            }
+            case 10 -> {
+            }
+        }
+
+
+
         startMenu();
     }
 
@@ -121,7 +173,7 @@ public class adminApp extends Console {
             reducereRepository.add(new Reducere(idRed,idArt,reducere));
 
         }catch (Exception e){
-            System.out.println("Something went wrong, please try other values");
+            System.out.println("Something went wrong");
             createReducere();
         }
         startMenu();

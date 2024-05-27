@@ -11,6 +11,10 @@ public abstract class Console {
     protected ComandaRepository comandaRepository;
     protected ComandaArticleRepository comandaArticleRepository;
     protected ReducereRepository reducereRepository;
+    protected ProviderRepository providerRepository;
+
+    protected providerArticleRepository providerArticleRepository;
+
 
     public abstract void startMenu();
 }

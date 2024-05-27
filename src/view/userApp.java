@@ -32,7 +32,7 @@ public class userApp extends Console {
         try {
             userRepository.add(User.createUser());
         } catch (Exception e) {
-            System.out.println("Something went wrong, please try other values");
+            System.out.println("Something went wrong");
             createUser();
         }
     }
@@ -56,6 +56,7 @@ public class userApp extends Console {
     {
         audit.write(id, "Logged in");
     }
+
     public void addArticleToComanda(int id)
     {
         Scanner sc = new Scanner(System.in);
@@ -66,21 +67,20 @@ public class userApp extends Console {
 
         }catch (Exception e)
         {
-            System.out.println("Something went wrong, please try other values");
+            System.out.println("Something went wrong");
         }
 
         System.out.println(
                 "1.Adaugare produs la comanda\n" +
-                "2.Back\n");
+                "2.Trimite comanda\n");
 
         int option = sc.nextInt();
         sc.nextLine();
         switch (option) {
             case 1 -> {addArticleToComanda(id); }
             case 2 -> {
-                System.out.println("Selectati urmatoarea actiune pentru comanda creata:\n" +
-                        "1.Adaugare produs la comanda\n" +
-                        "2.Trimite comanda\n");
+                System.out.println("Comanda trimisa!");
+                startMenu();
                 break;}
             case 10 -> {
             }
@@ -132,7 +132,6 @@ public class userApp extends Console {
             switch (option) {
                 case 1 -> {addArticleToComanda(idnext); }
                 case 2 -> {
-
                     startMenu();
                 }
                 case 10 -> {
@@ -142,7 +141,7 @@ public class userApp extends Console {
 
         }catch (Exception e)
         {
-            System.out.println("Something went wrong, please try other values");
+            System.out.println("Something went wrong");
         }
     }
     public void showArticles()

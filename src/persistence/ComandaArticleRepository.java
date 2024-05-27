@@ -24,6 +24,7 @@ public class ComandaArticleRepository {
         }
         return instance;
     }
+
     public void add(ComandaArticle comandaArticle) {
         String insertUser = "INSERT INTO ComandaArticle VALUES (?, ?, ?)";
 
