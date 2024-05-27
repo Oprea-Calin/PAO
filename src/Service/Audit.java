@@ -27,7 +27,6 @@ public class Audit {
 
     private String getTime(){
         LocalDateTime now = LocalDateTime.now(ZoneId.systemDefault());
-
         int hours = now.getHour();
         int minutes = now.getMinute();
         int seconds = now.getSecond();

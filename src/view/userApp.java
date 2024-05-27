@@ -1,5 +1,6 @@
 package view;
 
+import model.Article;
 import model.Comanda;
 import model.ComandaArticle;
 import model.User.User;
@@ -50,6 +51,10 @@ public class userApp extends Console {
         return userRepository.validateLogin(username, password);
     }
 
+    public void Audit(int id)
+    {
+        audit.write(id, "Logged in");
+    }
     public void addArticleToComanda(int id)
     {
         Scanner sc = new Scanner(System.in);
@@ -71,7 +76,11 @@ public class userApp extends Console {
         sc.nextLine();
         switch (option) {
             case 1 -> {addArticleToComanda(id); }
-            case 2 -> {break;}
+            case 2 -> {
+                System.out.println("Selectati urmatoarea actiune pentru comanda creata:\n" +
+                        "1.Adaugare produs la comanda\n" +
+                        "2.Trimite comanda\n");
+                break;}
             case 10 -> {
             }
         }
@@ -121,7 +130,10 @@ public class userApp extends Console {
             sc.nextLine();
             switch (option) {
                 case 1 -> {addArticleToComanda(idnext); }
-                case 2 -> {break;}
+                case 2 -> {
+
+                    startMenu();
+                }
                 case 10 -> {
                 }
             }
@@ -132,9 +144,25 @@ public class userApp extends Console {
             System.out.println("Something went wrong, please try other values");
         }
     }
+    public void showArticles()
+    {
+        ArrayList<Article> articles = articleRepository.getAll();
 
+        System.out.println("Articles:");
+        for (Article article : articles)
+        {
+            System.out.println(article.getArticleId());
+
+            System.out.println(article.getName());
+
+            System.out.println(article.getDescription());
+            System.out.println("\n");
+        }
+        startMenu();
+    }
     @Override
     public void startMenu() {
+
         Scanner scanner = new Scanner(System.in);
         int option;
 
@@ -142,7 +170,8 @@ public class userApp extends Console {
 
         System.out.println("Choose your next action:\n" +
                 "1.Create Comanda\n"+
-                "2.Afisare Comenzi User\n"
+                "2.Afisare Comenzi User\n" +
+                "3.Afisare Articole"
                 );
 
         option = scanner.nextInt();
@@ -150,6 +179,7 @@ public class userApp extends Console {
         switch (option) {
             case 1 -> createComanda();
             case 2 -> showComenziUser(userId);
+            case 3 -> showArticles();
 
             case 10 -> {
             }

@@ -39,9 +39,10 @@ public class adminApp extends Console {
         }
     }
 
-
-
-
+    public void Audit(int id)
+    {
+        audit.write(id, "Logged in");
+    }
 
     public int validateLogin(String username, String password){
         return userRepository.validateLogin(username, password);
@@ -79,7 +80,11 @@ public class adminApp extends Console {
         System.out.println("Articles:");
         for (Article article : articles)
         {
+            System.out.println(article.getArticleId());
+
             System.out.println(article.getName());
+
+            System.out.println(article.getDescription());
             System.out.println("\n");
         }
         startMenu();
@@ -123,10 +128,8 @@ public class adminApp extends Console {
         startMenu();
     }
 
-
     @Override
     public void startMenu() {
-        audit.write(adminID, "Logged in");
         Scanner scanner = new Scanner(System.in);
         int option;
 
